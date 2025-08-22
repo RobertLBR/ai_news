@@ -6,5 +6,9 @@ readme = "README.md"
 requires-python = ">=3.10"
 dependencies = [
     "beautifulsoup4>=4.13.4",
+    "chardet>=5.2.0",
+    "feedparser>=6.0.11",
+    "lxml-html-clean>=0.4.2",
+    "newspaper3k>=0.2.8",
     "requests>=2.32.5",
 ]
