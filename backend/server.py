@@ -26,7 +26,7 @@ class NewsHandler(SimpleHTTPRequestHandler):
             super().do_GET()
 
 def run_server():
-    server_address = ('', 8000)
+    server_address = ('0.0.0.0', 8000)
     httpd = HTTPServer(server_address, NewsHandler)
     print('Server running on port 8000...')
     httpd.serve_forever()
