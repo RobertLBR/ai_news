@@ -6,15 +6,18 @@ from datetime import datetime
 
 def fetch_ai_news():
     """Fetch AI news from a predefined source."""
-    url = "https://example-ai-news-source.com"  # Replace with actual source
+    url = "https://news.163.com/"
     response = requests.get(url)
     soup = BeautifulSoup(response.text, 'html.parser')
     
     news_items = []
-    for item in soup.select('.news-item'):  # Adjust selector based on source
-        title = item.select_one('h2').text.strip()
-        summary = item.select_one('p').text.strip()
-        url = item.select_one('a')['href']
+    for item in soup.select('.news_title a'):  # Adjust selector for 163.com
+        title = item.text.strip()
+        url = item['href']
+        # Fetch detailed content if needed
+        detail_response = requests.get(url)
+        detail_soup = BeautifulSoup(detail_response.text, 'html.parser')
+        summary = detail_soup.select_one('.post_text').text.strip() if detail_soup.select_one('.post_text') else "No summary available"
         news_items.append({
             'title': title,
             'summary': summary,
